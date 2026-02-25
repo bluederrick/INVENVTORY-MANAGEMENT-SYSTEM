@@ -23,10 +23,10 @@ public class InvitationService {
 
      private  TokenServiceImpl tokenService ;
 
-    public InvitationService(InvitationRepo invitationRepo) {
+    public InvitationService(InvitationRepo invitationRepo, TokenServiceImpl tokenService) {
         this.invitationRepo = invitationRepo;
+        this.tokenService = tokenService;
     }
-
 
     public InvitationResponseDTO sendInvitation(InvitationRequestDTO req){
 
