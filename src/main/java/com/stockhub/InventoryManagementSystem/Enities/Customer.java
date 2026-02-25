@@ -1,7 +1,10 @@
 package com.stockhub.InventoryManagementSystem.Enities;
 
+import jakarta.persistence.Entity;
+
 import java.time.LocalDate;
 
+@Entity
 public class Customer extends BaseModel{
 
     private String firstName;

@@ -1,4 +1,4 @@
-# 📦 Inventory Management System
+API Documentation. # 📦 Inventory Management System
 
 A comprehensive inventory management system built with Spring Boot, MySQL, and Docker. Manage products, suppliers, customers, orders, and track inventory in real-time.
 ---
@@ -26,273 +26,512 @@ A comprehensive inventory management system built with Spring Boot, MySQL, and D
 - ✅ Exception handling
 - ✅ Swagger/OpenAPI documentation
 
----
 
-## 📋 Table of Contents
+ Base URL
+http://localhost:8080/api/v1
 
-1. [Prerequisites](#prerequisites)
-2. [Installation](#installation)
-3. [Configuration](#configuration)
-4. [Running the Application](#running-the-application)
-5. [API Documentation](#api-documentation)
-6. [Database Schema](#database-schema)
-7. [Docker Setup](#docker-setup)
-8. [Usage Examples](#usage-examples)
-9. [Testing](#testing)
-10. [Troubleshooting](#troubleshooting)
-
-## 🔧 Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-- **Java 17+** - [Download JDK](https://adoptium.net/)
-- **Maven 3.8+** - [Download Maven](https://maven.apache.org/download.cgi)
-- **Docker & Docker Compose** - [Download Docker](https://www.docker.com/get-started)
-- **MySQL 8.0+** (if not using Docker) - [Download MySQL](https://dev.mysql.com/downloads/)
-- **Git** - [Download Git](https://git-scm.com/)
-
-**Optional:**
-- IntelliJ IDEA / Eclipse / VS Code
-- Postman / Insomnia (for API testing)
-
----
-
-## 📥 Installation
-
-### 1. Clone the Repository
-git clone https://github.com/bluederrick/INVENTORY-MANAGEMENT-SYSTEM.git
-cd INVENTORY-MANAGEMENT-SYSTEM
-```
-
-### 2. Build the Project
-
-# Clean and install dependencies
-mvn clean install
-
-# Skip tests if needed
-mvn clean install -DskipTests
-```
-
----
-
-## ⚙️ Configuration
-
-### Application Properties
-
-
-# Application
-spring.application.name=InventoryManagementSystem
-server.port=8080
-
-app.base-url=/api/v1
-
-# Database Configuration
-spring.datasource.url=jdbc:mysql://localhost:3306/inventory_db?useSSL=false&serverTimezone=UTC
-spring.datasource.username=root
-spring.datasource.password=your_password
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
-# JPA/Hibernate
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
-
-# Logging
-logging.level.com.stockhub=DEBUG
-logging.level.org.springframework.web=INFO
-logging.level.org.hibernate.SQL=DEBUG
-### Environment Variables (Optional)
+### 📦 APP Endpoints
+http://127.0.0.1:8080/api/v1/products
+http://127.0.0.1:8080/api/v1/products/{id}
+http://127.0.0.1:8080/api/v1/register
+http://127.0.0.1:8080/api/v1/incomingorder
+http://127.0.0.1:8080/api/v1/incomingorder/{id}
+http://127.0.0.1:8080/api/v1/outgoingorder
+http://127.0.0.1:8080/api/v1/outgoingorder/{id}
+http://127.0.0.1:8080/api/v1/supplier
+http://127.0.0.1:8080/api/v1/supplier/{id}
+http://127.0.0.1:8080/api/v1/user
+http://127.0.0.1:8080/api/v1/user/{id}
 
 
 
+POST api/v1/register
+{
+  "success": true,
+  "message": "User registered successfully",
+  "data": {
+    "id": 1,
+    "username": "john_doe",
+    "email": "john@example.com",
+    "role": "USER"
+  }
+}
 
-DB_HOST=localhost
-DB_PORT=3306
-DB_NAME=inventory_db
-DB_USER=root
-DB_PASSWORD=your_password
-SERVER_PORT=8080
-```
+POST api/v1/login
+response: 200 ok
+{
+  "success": true,
+  "message": "Login successful",
+  "data": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "username": "john_doe",
+    "role": "ADMIN"
+  }
+}
 
----
-
-## 🏃 Running the Application
-
-### Option 1: Local Development (Without Docker)
-
-#### Step 1: Start MySQL
-```bash
-# Start MySQL service
-# macOS
-brew services start mysql
-
-# Linux
-sudo systemctl start mysql
-
-# Windows
-# Start from Services app
-```
-
-#### Step 2: Create Database
-```bash
-mysql -u root -p
-
-CREATE DATABASE inventory_db;
-exit;
-```
-
-#### Step 3: Run Application
-```bash
-# Using Maven
-mvn spring-boot:run
-
-# Or run the JAR
-java -jar target/InventoryManagementSystem-0.0.1-SNAPSHOT.jar
-```
-
-Application will start at: **http://localhost:8080**
-
----
-
-### Option 2: Docker (Recommended)
-
-#### Step 1: Build Docker Image
-```bash
-# Build application JAR
-mvn clean package -DskipTests
-
-# Build Docker image
-docker build -t inventory-management-system .
-```
-
-#### Step 2: Run with Docker Compose
-```bash
-# Start all services (MySQL + Spring Boot)
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop services
-docker-compose down
-```
-
-Application will start at: **http://localhost:8080**
-
----
-
-## 📚 API Documentation
-
-### Base URL
-```
-http://localhost:8080/api
-```
-
-
-
----
-
-### 📦 Product Endpoints
-
-#### Get All Products
-```http
 GET /api/products
+
+{
+  "success": true,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "description": "High-performance laptop with Intel i7 processor, 16GB RAM, 512GB SSD",
+      "price": 999.99,
+      "quantity": 50,
+      "category": {
+        "id": 1,
+        "name": "Electronics"
+      },
+
+      "dateCreated": "2024-02-10",
+      "dateUpdated": "2024-02-15"
+    },
+    {
+      "id": 2,
+      "name": "Mechanical Keyboard",
+      "description": "RGB mechanical keyboard with Cherry MX switches",
+      "price": 129.99,
+      "quantity": 200,
+      "category": {
+        "id": 1,
+        "name": "Electronics"
+      },
+      "dateCreated": "2024-02-11",
+      "dateUpdated": "2024-02-11"
+    },
+    {
+      "id": 3,
+      "name": "Wireless Mouse",
+      "description": "Ergonomic wireless mouse with adjustable DPI",
+      "price": 29.99,
+      "quantity": 150,
+      "category": {
+        "id": 1,
+        "name": "Electronics"
+      },
+      "dateCreated": "2024-02-12",
+      "dateUpdated": "2024-02-12"
+    },
+    {
+      "id": 4,
+      "name": "Office Chair",
+      "description": "Ergonomic office chair with lumbar support",
+      "price": 249.99,
+      "quantity": 30,
+      "category": {
+        "id": 2,
+        "name": "Furniture"
+      },
+      "dateCreated": "2024-02-13",
+      "dateUpdated": "2024-02-13"
+    },
+    {
+      "id": 5,
+      "name": "USB-C Cable",
+      "description": "2-meter USB-C to USB-C cable with fast charging support",
+      "price": 12.99,
+      "quantity": 500,
+      "category": {
+        "id": 3,
+        "name": "Furniture"
+      },
+      "dateCreated": "2024-02-14",
+      "dateUpdated": "2024-02-14"
+    },
+    {
+      "id": 6,
+      "name": "Monitor Stand",
+      "description": "Adjustable monitor stand with cable management",
+      "price": 45.00,
+      "quantity": 80,
+      "category": {
+        "id": 3,
+        "name": "Furniture"
+      },
+      "dateCreated": "2024-02-15",
+      "dateUpdated": "2024-02-15"
+    },
+    {
+      "id": 7,
+      "name": "Desk Lamp",
+      "description": "LED desk lamp with adjustable brightness and color temperature",
+      "price": 39.99,
+      "quantity": 120,
+      "category": {
+        "id": 4,
+        "name": "Furniture"
+      },
+      "dateCreated": "2024-02-16",
+      "dateUpdated": "2024-02-16"
+    },
+    {
+      "id": 8,
+      "name": "Webcam",
+      "
+
+GET /api/v1/products/{id}
+response: 200 ok
+{
+  "success": true,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "description": "High-performance laptop",
+      "price": 999.99,
+      "quantity": 50,
+      "category": "Electronics",
+      "product": "LAP-001",
+      "dateCreated": "2024-02-17"
+    }
+    
+  ]
+}
+POST /api/v1/products
+response: 200 ok
+{
+  "success": true,
+  "message": "Product found",
+  "data": {
+    "id": 1,
+    "name": "Laptop",
+    "description": "High-performance laptop",
+    "price": 999.99,
+    "quantity": 50,
+    "category": "Electronics"
+  }
+}
+PUT /api/v1/products/{id}
+
+{
+  "success": true,
+  "message": "Product updated successfully",
+  "data": {
+    "id": 1,
+    "name": "Updated Laptop Pro",
+    "description": "High-performance gaming laptop with updated specs",
+    "price": 1299.99,
+    "quantity": 35,
+    "category": {
+      "id": 1,
+      "name": "Electronics"
+    },
+    "dateCreated": "2024-02-10",
+    "dateUpdated": "2024-02-17"
+  }
+}
+
+DELETE /api/v1/products/{id}
+{
+  "success": true,
+  "message": "Product deleted successfully",
+  "data": null
+}
+GET /api/categories
+{
+  "success": true,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Electronics",
+      "description": "Electronic devices and accessories"
+    },
+    {
+      "id": 2,
+      "name": "Fashion",
+      "description": "Clothing and accessories"
+    }
+  ]
+}
+POST /api/v1/categories
+{
+  "success": true,
+  "message": "Category created successfully",
+  "data": {
+    "id": 1,
+    "name": "Electronics",
+    "description": "Electronic devices and accessories"
+  }
+}
+PUT /api/v1/categories/{id}
+GET /api/suppliers
+{
+  "success": true,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Supply Co",
+      "email": "contact@supplyCo.com",
+      "phoneNumber": "+1234567890",
+      "address": "123 Supplier Street",
+      "role": "SUPPLIER"
+    }
+  ]
+}
+POST /api/v1/suppliers
+{
+  "success": true,
+  "message": "Supplier created successfully",
+  "data": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Supply Co",
+    "email": "contact@supplyCo.com",
+    "role": "SUPPLIER"
+  }
+}
+PUT /api/v1/suppliers/{id}
+
+{
+  "success": true,
+  "message": "Supplier updated successfully",
+  "data": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Updated Supply Co",
+    "age": 48,
+    "email": "newemail@supplyco.com",
+    "phoneNumber": "+1234567899",
+    "address": "456 Updated Supplier Avenue, New York, NY 10001",
+    "role": "SUPPLIER",
+    "dateCreated": "2024-01-15",
+    "dateUpdated": "2024-02-17"
+  }
+}
+DELETE /api/v1/suppliers/{id}
+
+Response;200 ok
+GET /api/v1/incoming-orders
+
+{
+  "success": true,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "supplier": {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Supply Co",
+        "email": "contact@supplyco.com",
+        "phoneNumber": "+1234567890"
+      },
+      "product": {
+        "id": 1,
+        "name": "Laptop",
+        
+      },
+      "quantityOrdered": 100,
+      "unitPrice": 800.00,
+      "totalPrice": 80000.00,
+      "orderDate": "2024-02-17",
+      "expectedDeliveryDate": "2024-02-24",
+      "actualDeliveryDate": null,
+      "status": "PENDING"
+    },
+    {
+      "id": 2,
+      "supplier": {
+        "id": 2,
+        "firstName": "Tech",
+        "lastName": "Distributors Ltd",
+        "email": "orders@techdist.com",
+        "phoneNumber": "+9876543210"
+      },
+      "product": {
+        "id": 3,
+        "name": "Wireless Mouse",
+       
+      },
+      "quantityOrdered": 500,
+      "unitPrice": 15.50,
+      "totalPrice": 7750.00,
+      "orderDate": "2024-02-15",
+
+    },
+    {
+      "id": 3,
+      "supplier": {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Supply Co",
+        "email": "contact@supplyco.com",
+        "phoneNumber": "+1234567890"
+      },
+      "product": {
+        "id": 5,
+        "name": "USB-C Cable",
+      },
+      "quantityOrdered": 1000,
+      "unitPrice": 5.99,
+      "totalPrice": 5990.00,
+      "orderDate": "2024-02-16",
+
+    },
+    {
+      "id": 4,
+      "supplier": {
+        "id": 3,
+        "firstName": "Global",
+        "lastName": "Electronics Inc",
+        "email": "sales@globalelec.com",
+        "phoneNumber": "+1122334455"
+      },
+      "product": {
+        "id": 2,
+        "name"Keyboard",
+      },
+      "quantityOrdered": 200,
+      "unitPrice": 75.00,
+      "totalPrice": 15000.00,
+      "orderDate": "2024-02-10",
+    
+    },
+    {
+      "id": 5,
+      "supplier": {
+        "id": 2,
+        "firstName": "Tech",
+        "lastName": "Distributors Ltd",
+        "email": "orders@techdist.com",
+        "phoneNumber": "+9876543210"
+      },
+      "product": {
+        "id": 4,
+        "name": "Laptop Charger",
+      },
+      "quantityOrdered": 150,
+      "unitPrice": 45.00,
+      "totalPrice": 6750.00,
+      "orderDate": "2024-02-18",
+     
+    }
+  ]
+}
+GET /api/v1/incoming-orders/{id}
+{
+  "success": true,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "supplierId": 1,
+      "supplierName": "John Supply Co",
+      "productId": 1,
+      "productName": "Laptop",
+      "quantityOrdered": 100,
+      "unitPrice": 800.00,
+      "totalPrice": 80000.00,
+      "orderDate": "2024-02-17",
+     
+    }
+  ]
+}
 ```
+POST /api/v1/incoming-orders
+{
+  "success": true,
+  "message": "Incoming order created successfully",
+  "data": {
+    "id": 1,
+    "supplierId": 1,
+    "productId": 1,
+    "quantityOrdered": 100,
+    "totalPrice": 80000.00,
+   
+  }
+}
 
+GET /api/v1/users
 
+{
+"success": true,
+"message": "Success",
+"data": [
+{
+"id": 1,
+"username": "john_doe",
+"email": "john.doe@inventory.com",
+"firstName": "John",
+"lastName": "Doe",
+"role": "ADMIN",
+"status": "ACTIVE",
+"dateCreated": "2024-01-10",
+"lastLogin": "2024-02-17T09:30:00"
+},
+{
+"id": 2,
+"username": "jane_smith",
+"email": "jane.smith@inventory.com",
+"firstName": "Jane",
+"lastName": "Smith",
+"role": USER”,
+"status": "ACTIVE",
+"dateCreated": "2024-01-15",
+"lastLogin": "2024-02-16T14:20:00"
+},
+{
+"id": 3,
+"username": "mike_manager",
+"email": "mike.manager@inventory.com",
+"firstName": "Mike",
+"lastName": "Manager",
+"role": "ADMIN",
+"dateCreated": "2024-01-20",
+"lastLogin": "2024-02-17T08:15:00"
+},
+{
+"id": 4,
+"username": "sarah_staff",
+"email": "sarah.staff@inventory.com",
+"firstName": "Sarah",
+"lastName": "Johnson",
+"role": “USER”,
+"dateCreated": "2024-02-01",
+"lastLogin": "2024-02-15T16:45:00"
+},
+{
+"id": 5,
+"username": "bob_warehouse",
+"email": "bob.warehouse@inventory.com",
+"firstName": "Bob",
+"lastName": "Williams",
+"role": “USER”,
+"dateCreated": "2024-01-05",
+"lastLogin": "2024-02-10T11:00:00"
+}
+]
+}
 
-
-
-
-Docker setup
-
-### Dockerfile
-```dockerfile
-# Build stage
-FROM maven:3.9-eclipse-temurin-17 AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
-
-# Run stage
-FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
-```
-
-### docker-compose.yml
-```yaml
-version: '3.8'
-
-services:
-  mysql:
-    image: mysql:8.0
-    container_name: inventory-mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: inventory_db
-      MYSQL_USER: inventory_user
-      MYSQL_PASSWORD: inventory_pass
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - inventory-network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  app:
-    build: .
-    container_name: inventory-app
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/inventory_db?useSSL=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: inventory_user
-      SPRING_DATASOURCE_PASSWORD: inventory_pass
-    ports:
-      - "8080:8080"
-    depends_on:
-      mysql:
-        condition: service_healthy
-    networks:
-      - inventory-network
-    restart: unless-stopped
-
-volumes:
-  mysql_data:
-
-networks:
-  inventory-network:
-    driver: bridge
-```
-
-### Docker Commands
-```bash
-# Build and start
-docker-compose up -d --build
-
-# View logs
-docker-compose logs -f app
-
-# Stop services
-docker-compose down
-
-# Remove everything (including volumes)
-docker-compose down -v
-
-# Restart services
-docker-compose restart
-
-# Access MySQL
-docker exec -it inventory-mysql mysql -u root -p
-```
-
----
-
+GET /api/users/{id}
+{
+"success": true,
+"message": "Success",
+"data": [
+{
+"id": 2,
+"username": "jane_smith",
+"email": "jane.smith@inventory.com",
+"firstName": "Jane",
+"lastName": "Smith",
+"role": "USER”,
+"dateCreated": "2024-01-15",
+"lastLogin": "2024-02-16T14:20:00"
+},
+{
+"id": 4,
+"username": "sarah_staff",
+"email": "sarah.staff@inventory.com",
+"firstName": "Sarah",
+"lastName": "Johnson",
+"role": "User",
+"dateCreated": "2024-02-01",
+"lastLogin": "2024-02-15T16:45:00"
+}

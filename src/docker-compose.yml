@@ -4,9 +4,9 @@ services:
     container_name: Employment
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: EmploymentHub2
+      MYSQL_DATABASE: InventoryManagementSystem
       MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: root
     ports:
       - "3307:3306"
     volumes:

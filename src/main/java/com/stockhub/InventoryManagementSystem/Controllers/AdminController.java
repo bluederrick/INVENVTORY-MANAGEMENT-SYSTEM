@@ -1,9 +1,10 @@
 package com.stockhub.InventoryManagementSystem.Controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+// send the invite
 @RestController
-@RequestMapping("${app.base-url}/supplier")
-public class supplierController {
+public class AdminController {
+
 }

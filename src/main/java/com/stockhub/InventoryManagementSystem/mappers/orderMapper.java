@@ -9,12 +9,12 @@ import java.util.List;
 
 public class orderMapper {
 //customers order products
-
-    public OutgoingOrder toEntity(CreateProductRequestDto dto,
-                                  Customer customer,
-                                  List<Product> products) {
-        // Map order request DTO to order entity
-    }
+//
+//    public OutgoingOrder toEntity(CreateProductRequestDto dto,
+//                                  Customer customer,
+//                                  List<Product> products) {
+//        // Map order request DTO to order entity
+//    }
 
 
 }

@@ -1,13 +1,17 @@
-package com.stockhub.InventoryManagementSystem.notification;
+package com.stockhub.InventoryManagementSystem.Notification;
 
 import com.stockhub.InventoryManagementSystem.Enities.Customer;
+import com.stockhub.InventoryManagementSystem.Enities.Invitation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 
 @Service
 public class EmailNotification {
+
+    Invitation invite ;
     @Autowired
     JavaMailSender javaMailSender;
     @Value("${spring.mail.username}")
@@ -21,7 +25,7 @@ public class EmailNotification {
     public void sendMail(Customer customer){
         SimpleMailMessage message = new SimpleMailMessage();
         String emailContent =
-                templateService.buildRegistrationEmail(employee.getFirstName());
+                templateService.buildRegistrationEmail(invite.getEmail());
 
         message.setFrom(senderMail);
         message.setTo();

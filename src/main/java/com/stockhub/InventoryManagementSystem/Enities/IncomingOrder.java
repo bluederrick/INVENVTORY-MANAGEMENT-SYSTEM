@@ -1,6 +1,8 @@
 package com.stockhub.InventoryManagementSystem.Enities;
 
+import jakarta.persistence.Entity;
 
+@Entity
 
 public class IncomingOrder extends BaseModel{
 

@@ -1,7 +1,11 @@
 package com.stockhub.InventoryManagementSystem.Enities;
 
+import jakarta.persistence.Entity;
+
 import java.time.LocalDate;
 
+
+@Entity
 public class OutgoingOrder extends BaseModel {
 
     private Integer productId ;

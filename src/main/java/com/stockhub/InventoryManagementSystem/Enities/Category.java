@@ -2,7 +2,9 @@ package com.stockhub.InventoryManagementSystem.Enities;
 
 
 import com.stockhub.InventoryManagementSystem.enums.CATEGORY;
+
 import jakarta.persistence.Entity;
+
 
 @Entity
 public class Category extends BaseModel {
