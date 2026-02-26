@@ -21,10 +21,11 @@ public class Staff extends BaseModel {
 
     private LocalDate dateUpdated ;
 
-    
+    public Staff() {
+    }
 
     public Staff(String userName, String email, String password, ROLE role, LocalDate dateCreated,
-            LocalDate dateUpdated) {
+                 LocalDate dateUpdated) {
         this.userName = userName;
         this.email = email;
         this.password = password;

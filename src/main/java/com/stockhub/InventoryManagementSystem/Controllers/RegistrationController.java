@@ -2,6 +2,7 @@ package com.stockhub.InventoryManagementSystem.Controllers;
 
 import com.stockhub.InventoryManagementSystem.dto.Invitiation.InvitationRequestDTO;
 import com.stockhub.InventoryManagementSystem.dto.Registration.RegisterRequestDTO;
+import com.stockhub.InventoryManagementSystem.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,35 +14,41 @@ import com.stockhub.InventoryManagementSystem.adapters.ApiResponse;
 import com.stockhub.InventoryManagementSystem.service.InvitationService;
 
 //accept invite
+//RegistrationController
+//→ Validate toke
+//→ Create User
+//→ Mark invitation as ACCEPTED
+//→ Save User in DB
+
+
+
+
+
+
 
 @RestController
-@RequestMapping("${app.base-url}/registration")
+@RequestMapping("${app.base-url}")
+
 public class RegistrationController {
 
+    private final RegistrationService registrationService;
 
- private final InvitationService invitationService;
-
-
-    public RegistrationController(InvitationService invitationService) {
-        this.invitationService = invitationService;
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
     @PostMapping("/register")
-public ResponseEntity<?> registerUser(@RequestBody InvitationRequestDTO req) {
+    public ResponseEntity<?> registerUser(@RequestBody RegisterRequestDTO req) {
 
-       boolean success = invitationService.sendInvitation(req).isSuccess();
+        boolean success = registrationService.registerUser(req);
 
-    if (!success) {
-        return ResponseEntity.badRequest().body(
-                new ApiResponse(false, "Registration failed", null)
+        if (!success) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse(false, "Registration failed", null));
+        }
+
+        return ResponseEntity.ok(
+                new ApiResponse(true, "Registration successful", null)
         );
     }
-
-    return ResponseEntity.ok(
-            new ApiResponse(true, "Registration successful", success)
-    );
-
-
-}
-
 }

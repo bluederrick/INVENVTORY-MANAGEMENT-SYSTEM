@@ -19,20 +19,19 @@ public class EmailNotification {
 
     @Autowired
     private TemplateService templateService ;
-    private static final String REGISTRATION_SUCCESS_SUBJECT =
-            "Welcome to StaffPro Employment Hub";
+//    private static final String REGISTRATION_SUCCESS_SUBJECT =
+//            "INVENTORY MANAGEMENT HUB REGISTRATION";
 
-    public void sendMail(Customer customer){
+    public void sendMail(String email ,String obj){
         SimpleMailMessage message = new SimpleMailMessage();
         String emailContent =
-                templateService.buildRegistrationEmail(invite.getEmail());
+                templateService.buildRegistrationEmail(email);
 
         message.setFrom(senderMail);
         message.setTo();
         message.setText(emailContent);
-        message.setSubject(REGISTRATION_SUCCESS_SUBJECT);
+        message.setSubject(obj);
         javaMailSender.send(message);
         System.out.println("Message sent successfully");
-
     }
 }

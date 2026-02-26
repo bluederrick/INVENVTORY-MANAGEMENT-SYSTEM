@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.stockhub.InventoryManagementSystem.Enities.Invitation;
+import com.stockhub.InventoryManagementSystem.Notification.EmailNotification;
 import com.stockhub.InventoryManagementSystem.dto.InvitationResponseDTO;
 import com.stockhub.InventoryManagementSystem.dto.Invitiation.InvitationRequestDTO;
 import com.stockhub.InventoryManagementSystem.enums.INVITATIONSTATUS;
@@ -21,11 +22,14 @@ public class InvitationService {
      private final InvitationRepo invitationRepo;
 
 
+     private final EmailNotification emailNotification ;
+
      private  TokenServiceImpl tokenService ;
 
-    public InvitationService(InvitationRepo invitationRepo, TokenServiceImpl tokenService) {
+    public InvitationService(InvitationRepo invitationRepo, TokenServiceImpl tokenService , EmailNotification emailNotification) {
         this.invitationRepo = invitationRepo;
         this.tokenService = tokenService;
+        this.emailNotification =emailNotification ;
     }
 
     public InvitationResponseDTO sendInvitation(InvitationRequestDTO req){
@@ -49,14 +53,14 @@ if (existing.isPresent()) {
 
     invitationRepo.save(invite);
 
+//    send the email to the user
 
-        System.out.println("Invitation link: http://localhost:3000/register?token=" + token);
+        emailNotification.sendMail(req.getEmail(),token);
+
+//        System.out.println("Invitation link: http://localhost:3000/register?token=" + token);
 
         return new InvitationResponseDTO(true, "Invitation sent successfully", token);
-    
-
 
      }
-
 
 }
