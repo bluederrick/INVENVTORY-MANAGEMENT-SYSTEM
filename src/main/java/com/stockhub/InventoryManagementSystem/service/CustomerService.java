@@ -1,4 +1,4 @@
 package com.stockhub.InventoryManagementSystem.service;
 
-public class orderService {
+public class CustomerService {
 }

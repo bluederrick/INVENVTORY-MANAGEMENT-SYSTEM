@@ -73,7 +73,15 @@ public void setCreated(Boolean created) {
 }
 
 
-
-
-
+    @Override
+    public String toString() {
+        return "Invitation{" +
+                "email='" + email + '\'' +
+                ", role=" + role +
+                ", token='" + token + '\'' +
+                ", status=" + status +
+                ", expiryDate=" + expiryDate +
+                ", created=" + created +
+                '}';
+    }
 }

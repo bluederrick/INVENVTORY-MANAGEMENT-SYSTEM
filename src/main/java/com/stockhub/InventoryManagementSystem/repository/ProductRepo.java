@@ -1,4 +1,4 @@
 package com.stockhub.InventoryManagementSystem.repository;
 
-public interface productRepo {
+public interface ProductRepo {
 }

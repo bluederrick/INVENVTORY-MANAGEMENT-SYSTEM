@@ -1,9 +1,5 @@
 package com.stockhub.InventoryManagementSystem.service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
-
 import com.stockhub.InventoryManagementSystem.Enities.Staff;
 import com.stockhub.InventoryManagementSystem.Enities.Supplier;
 import com.stockhub.InventoryManagementSystem.adapters.ApiResponse;
@@ -35,18 +31,26 @@ public class RegistrationService {
 
     public ApiResponse<?> registerUser(RegisterRequestDTO request){
 
+
+
         Invitation invitation = invitationRepo.findByToken(request.getToken())
-                .orElseThrow(() -> new RuntimeException("Invalid token"));
+                .orElse(null);
+        System.out.println("invitation" + invitation);
 
-        if (invitation.getStatus() != INVITATIONSTATUS.PENDING) {
-            throw new RuntimeException("Invitation already used or expired");
+        if (invitation == null) {
+
+            return new ApiResponse<>(false, "Invalid token", null);
         }
-
+        if (invitation.getStatus() != INVITATIONSTATUS.PENDING) {
+            return new ApiResponse<>(false, "Invitation already used or expired", null);
+        }
 //        if (invitation.getExpiryDate().isBefore(LocalDate.now())) {
 //            invitation.setStatus(INVITATIONSTATUS.EXPIRED);
 //            invitationRepo.save(invitation);
 //            throw new RuntimeException("Invitation expired");
 //        }
+
+        RegistrationResponseDTO responseDTO = null;
 
         switch (invitation.getRole()) {
 
@@ -75,7 +79,7 @@ public class RegistrationService {
                 staff.setEmail(request.getEmail());
                 staff.setRole(request.getRole());
                 staffRepo.save(staff);
-                responseDTO = new RegistrationResponseDTO(
+                  responseDTO = new RegistrationResponseDTO(
                         "STAFF",
                         staff.getEmail(),
                         null,
@@ -85,11 +89,11 @@ public class RegistrationService {
                 break;
 
             default:
-                throw new RuntimeException("Unsupported role type");
+                 new ApiResponse<>(false ,"Unsupported role type",null);
         }
 
         invitation.setStatus(INVITATIONSTATUS.ACCEPTED);
         invitationRepo.save(invitation);
-        return new ApiResponse(true, "Registration successful", responseDTO);
+        return new ApiResponse<>(true, "Registration successful", responseDTO);
     }
 }

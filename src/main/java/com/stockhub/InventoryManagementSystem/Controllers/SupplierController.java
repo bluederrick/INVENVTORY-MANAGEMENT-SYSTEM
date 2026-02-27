@@ -4,6 +4,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("${app.base-url}/category")
-public class categoryController {
+@RequestMapping("${app.base-url}/supplier")
+public class SupplierController {
 }

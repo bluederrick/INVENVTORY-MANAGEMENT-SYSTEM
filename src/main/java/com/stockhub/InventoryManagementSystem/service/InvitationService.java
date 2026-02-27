@@ -24,7 +24,7 @@ public class InvitationService {
 
      private final EmailNotification emailNotification ;
 
-     private  TokenServiceImpl tokenService ;
+     private final TokenServiceImpl tokenService ;
 
     public InvitationService(InvitationRepo invitationRepo, TokenServiceImpl tokenService , EmailNotification emailNotification) {
         this.invitationRepo = invitationRepo;
@@ -53,11 +53,11 @@ if (existing.isPresent()) {
 
     invitationRepo.save(invite);
 
-//    send the email to the user
+
 
         emailNotification.sendMail(req.getEmail(),token);
 
-//        System.out.println("Invitation link: http://localhost:3000/register?token=" + token);
+//      System.out.println("Invitation link: http://localhost:3000/register?token=" + token);
 
         return new InvitationResponseDTO(true, "Invitation sent successfully", token);
 
