@@ -1,6 +1,6 @@
 package com.stockhub.InventoryManagementSystem.dto.Invitiation;
 
-import com.stockhub.InventoryManagementSystem.enums.ROLE;
+import com.stockhub.InventoryManagementSystem.Enums.ROLE;
 
 public class InvitationRequestDTO {
     private String email;

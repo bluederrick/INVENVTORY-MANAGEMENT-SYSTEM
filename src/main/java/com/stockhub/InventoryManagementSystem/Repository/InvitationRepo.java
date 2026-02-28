@@ -1,4 +1,4 @@
-package com.stockhub.InventoryManagementSystem.repository;
+package com.stockhub.InventoryManagementSystem.Repository;
 
 import java.util.Optional;
 

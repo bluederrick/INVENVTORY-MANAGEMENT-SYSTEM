@@ -1,6 +1,6 @@
 package com.stockhub.InventoryManagementSystem.dto.Registration;
 
-import com.stockhub.InventoryManagementSystem.enums.ROLE;
+import com.stockhub.InventoryManagementSystem.Enums.ROLE;
 
 public class RegisterRequestDTO {
      private String token;

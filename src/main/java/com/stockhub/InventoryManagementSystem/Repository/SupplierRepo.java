@@ -1,4 +1,4 @@
-package com.stockhub.InventoryManagementSystem.repository;
+package com.stockhub.InventoryManagementSystem.Repository;
 
 import com.stockhub.InventoryManagementSystem.Enities.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;

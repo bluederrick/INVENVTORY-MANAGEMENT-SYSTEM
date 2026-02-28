@@ -1,21 +1,18 @@
-package com.stockhub.InventoryManagementSystem.service;
+package com.stockhub.InventoryManagementSystem.Service;
 
 import com.stockhub.InventoryManagementSystem.Enities.Staff;
 import com.stockhub.InventoryManagementSystem.Enities.Supplier;
 import com.stockhub.InventoryManagementSystem.adapters.ApiResponse;
 import com.stockhub.InventoryManagementSystem.dto.Registration.RegistrationResponseDTO;
-import com.stockhub.InventoryManagementSystem.repository.StaffRepo;
-import com.stockhub.InventoryManagementSystem.repository.SupplierRepo;
-import com.stockhub.InventoryManagementSystem.service.utilService.FormatPhoneNumber;
+import com.stockhub.InventoryManagementSystem.Repository.StaffRepo;
+import com.stockhub.InventoryManagementSystem.Repository.SupplierRepo;
+import com.stockhub.InventoryManagementSystem.Service.utilService.FormatPhoneNumber;
 import org.springframework.stereotype.Service;
 
 import com.stockhub.InventoryManagementSystem.Enities.Invitation;
 import com.stockhub.InventoryManagementSystem.dto.Registration.RegisterRequestDTO;
-import com.stockhub.InventoryManagementSystem.enums.INVITATIONSTATUS;
-import com.stockhub.InventoryManagementSystem.repository.InvitationRepo;
-
-import static com.stockhub.InventoryManagementSystem.enums.ROLE.STAFF;
-import static com.stockhub.InventoryManagementSystem.enums.ROLE.SUPPLIER;
+import com.stockhub.InventoryManagementSystem.Enums.INVITATIONSTATUS;
+import com.stockhub.InventoryManagementSystem.Repository.InvitationRepo;
 
 @Service
 public class RegistrationService {

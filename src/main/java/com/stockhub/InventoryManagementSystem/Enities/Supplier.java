@@ -2,7 +2,7 @@ package com.stockhub.InventoryManagementSystem.Enities;
 
 import java.time.LocalDate;
 
-import com.stockhub.InventoryManagementSystem.enums.ROLE;
+import com.stockhub.InventoryManagementSystem.Enums.ROLE;
 import jakarta.persistence.Entity;
 
 @Entity

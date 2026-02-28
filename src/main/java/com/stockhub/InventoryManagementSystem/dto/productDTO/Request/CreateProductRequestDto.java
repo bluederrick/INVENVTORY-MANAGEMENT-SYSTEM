@@ -1,7 +1,5 @@
 package com.stockhub.InventoryManagementSystem.dto.productDTO.Request;
 
-import com.stockhub.InventoryManagementSystem.enums.CATEGORY;
-
 import java.time.LocalDate;
 
 

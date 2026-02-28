@@ -2,7 +2,7 @@ package com.stockhub.InventoryManagementSystem.Controllers;
 
 import com.stockhub.InventoryManagementSystem.dto.InvitationResponseDTO;
 import com.stockhub.InventoryManagementSystem.dto.Invitiation.InvitationRequestDTO;
-import com.stockhub.InventoryManagementSystem.service.InvitationService;
+import com.stockhub.InventoryManagementSystem.Service.InvitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,4 +1,4 @@
-package com.stockhub.InventoryManagementSystem.service.utilService;
+package com.stockhub.InventoryManagementSystem.Service.utilService;
 
 public interface TokenService {
 

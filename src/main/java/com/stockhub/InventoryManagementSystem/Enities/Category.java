@@ -1,7 +1,7 @@
 package com.stockhub.InventoryManagementSystem.Enities;
 
 
-import com.stockhub.InventoryManagementSystem.enums.CATEGORY;
+import com.stockhub.InventoryManagementSystem.Enums.CATEGORY;
 
 import jakarta.persistence.Entity;
 

@@ -1,10 +1,10 @@
-package com.stockhub.InventoryManagementSystem.mappers;
+package com.stockhub.InventoryManagementSystem.Mappers;
 
 import com.stockhub.InventoryManagementSystem.Enities.Product;
 import com.stockhub.InventoryManagementSystem.dto.productDTO.Request.CreateProductRequestDto;
 import com.stockhub.InventoryManagementSystem.dto.productDTO.Response.ProductResponseDTO;
 
-public class productMapper {
+public class ProductMapper {
 
     Product product;
 

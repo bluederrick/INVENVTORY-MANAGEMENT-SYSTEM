@@ -1,4 +1,4 @@
-package com.stockhub.InventoryManagementSystem.service.utilService;
+package com.stockhub.InventoryManagementSystem.Service.utilService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

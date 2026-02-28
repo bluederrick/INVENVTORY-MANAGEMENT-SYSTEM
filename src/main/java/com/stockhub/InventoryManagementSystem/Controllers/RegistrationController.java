@@ -1,7 +1,7 @@
 package com.stockhub.InventoryManagementSystem.Controllers;
 
 import com.stockhub.InventoryManagementSystem.dto.Registration.RegisterRequestDTO;
-import com.stockhub.InventoryManagementSystem.service.RegistrationService;
+import com.stockhub.InventoryManagementSystem.Service.RegistrationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
