@@ -55,7 +55,7 @@ if (existing.isPresent()) {
 
 
 
-        emailNotification.sendMail(req.getEmail(),token);
+        emailNotification.sendOtpMail(req.getEmail(),token);
 
 //      System.out.println("Invitation link: http://localhost:3000/register?token=" + token);
 

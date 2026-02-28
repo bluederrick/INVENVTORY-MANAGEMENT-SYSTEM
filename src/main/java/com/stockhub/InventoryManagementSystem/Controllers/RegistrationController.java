@@ -2,6 +2,8 @@ package com.stockhub.InventoryManagementSystem.Controllers;
 
 import com.stockhub.InventoryManagementSystem.dto.Registration.RegisterRequestDTO;
 import com.stockhub.InventoryManagementSystem.service.RegistrationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +18,8 @@ import com.stockhub.InventoryManagementSystem.adapters.ApiResponse;
 @RequestMapping("${app.base-url}")
 
 public class RegistrationController {
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+
 
     private final RegistrationService registrationService;
 
@@ -29,6 +33,7 @@ public class RegistrationController {
 
         ApiResponse<?> response =
                 registrationService.registerUser(req);
+        logger.info(String.valueOf(response));
 
         return response.isSuccess()
                 ? ResponseEntity.ok(response)

@@ -14,12 +14,15 @@ import com.stockhub.InventoryManagementSystem.dto.Registration.RegisterRequestDT
 import com.stockhub.InventoryManagementSystem.enums.INVITATIONSTATUS;
 import com.stockhub.InventoryManagementSystem.repository.InvitationRepo;
 
+import static com.stockhub.InventoryManagementSystem.enums.ROLE.STAFF;
+import static com.stockhub.InventoryManagementSystem.enums.ROLE.SUPPLIER;
+
 @Service
 public class RegistrationService {
 
     private final InvitationRepo invitationRepo;
     private final StaffRepo staffRepo ;
-    private SupplierRepo supplierRepo ;
+    private final SupplierRepo supplierRepo ;
 
 
     public RegistrationService(InvitationRepo invitationRepo,StaffRepo staffRepo,SupplierRepo supplierRep) {
