@@ -29,7 +29,7 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<?>> registerUser(@RequestBody RegisterRequestDTO req) {
-
+        System.out.println(req);
 
         ApiResponse<?> response =
                 registrationService.registerUser(req);

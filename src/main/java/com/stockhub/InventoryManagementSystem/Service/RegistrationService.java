@@ -50,6 +50,7 @@ public class RegistrationService {
 //            throw new RuntimeException("Invitation expired");
 //        }
 
+
         RegistrationResponseDTO responseDTO = null;
 
         switch (invitation.getRole()) {
